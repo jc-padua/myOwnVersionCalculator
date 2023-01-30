@@ -1,0 +1,53 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #fceabb;
+    background: -webkit-linear-gradient(to right, #f8b500, #fceabb);
+    background: linear-gradient(to right, #f8b500, #fceabb);
+}
+
+.container {
+    background-color: #FFF;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
+.output-container {
+    background-color: rgb(23, 23, 23);
+    color: #FFF;
+    text-align: right;
+    padding: 1rem;
+    font-size: 2rem;
+    height: 5rem;
+}
+
+.previous {}
+
+.button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+button {
+    font-size: 2rem;
+    padding: 1rem;
+    margin: .2rem;
+    cursor: pointer;
+}
+
+.span-two {
+    grid-column-start: span 2;
+}
