@@ -28,20 +28,33 @@ function getVal(number) {
 
 // Setting Operation
 function setOperation(operation) {
-    if (!this.operation) {
-        this.operation = operation;
-        this.previousVal = `${this.currentVal}`;
-        this.currentVal = '';
+    if (this.operation) {
+        compute();
     }
+    this.operation = operation;
+    this.previousVal = `${this.currentVal}`;
+    this.currentVal = '';
 }
 
 function compute() {
     let current = parseFloat(currentVal);
     let previous = parseFloat(previousVal);
     let ops = operation;
+
     let result;
 
-    if (ops) {
+    if (operation === '') {
+        previousVal = '';
+        prevText.textContent = '';
+        operation = '';
+        currText.textContent = currentVal;
+    } else if (currentVal === '') {
+        currentVal = previousVal;
+        previousVal = ''
+        prevText.textContent = '';
+        operation = '';
+        currText.textContent = currentVal;
+    } else {
         switch (ops) {
             case "+":
                 result = previous + current;
@@ -56,18 +69,21 @@ function compute() {
                 result = previous * current;
                 break;
             default:
-                result = NaN;
+                return
                 break;
         }
+        prevText.textContent = '';
+        currText.textContent = result;
+        previousVal = '';
+        operation = '';
+        currentVal = result;
     }
 
-    prevText.textContent = result;
-    currText.textContent = '';
-    clear();
 }
 
 function displayNum() {
     currText.innerText = this.currentVal;
+
     if (this.previousVal === '') {
         prevText.innerText = '';
     } else {
@@ -76,6 +92,8 @@ function displayNum() {
 }
 
 function addPeriod(period) {
+    this.currentVal = String(this.currentVal)
+
     if (!this.currentVal.includes(period))
         this.currentVal += period;
 }
